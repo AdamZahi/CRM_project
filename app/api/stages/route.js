@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server"
-import { prisma } from "/lib/db.js"
-
+import { prisma } from "../../../lib/db"
 export async function GET() {
   try {
     const stages = await prisma.stage.findMany({
