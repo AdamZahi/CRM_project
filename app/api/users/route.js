@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import { prisma } from "/lib/db.js"
-
+//test
 export async function GET() {
   try {
     const users = await prisma.user.findMany({
