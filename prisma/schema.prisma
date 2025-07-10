@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())  // Changed from Clerk ID to generated ID
+  name      String?
+  email     String?  @unique
+  role      Role     @default(USER)
+  leads     Lead[]   @relation("AssignedLeads")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Lead {
+  id           String     @id @default(cuid())
+  name         String
+  email        String?
+  phone        String?
+  source       LeadSource
+  status       LeadStatus
+  channel      String?
+  stage        Stage      @relation(fields: [stageId], references: [id])
+  stageId      String
+  assignedTo   User?      @relation("AssignedLeads", fields: [assignedToId], references: [id])
+  assignedToId String?
+  dateAdded    DateTime   @default(now())
+  reminder     String?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model Stage {
+  id        String   @id @default(cuid())
+  name      String
+  position  Int
+  leads     Lead[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum LeadStatus {
+  ACTIVE
+  INACTIVE
+  COMPLETED
+}
+
+enum LeadSource {
+  ORGANIC
+  PAID
+  REFERRAL
+}
+
+enum Role {
+  ADMIN
+  USER
+}
