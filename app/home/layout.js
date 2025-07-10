@@ -7,14 +7,14 @@ export default function LeadsLayout({ children }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-8">
-              <h1 className="text-xl font-semibold text-gray-900">CRM Dashboard</h1>
+              <h1 className="text-xl font-semibold text-gray-900">Dashboard</h1>
               <nav className="flex space-x-4">
-                <NavLink href="/leads" label="Overview" />
-                <NavLink href="/leads/kanban" label="Kanban" />
-                <NavLink href="/leads/table" label="Table View" />
+                <NavLink href="/home" label="Overview" />
+                <NavLink href="/home/kanban" label="Kanban" />
+                <NavLink href="/home/table" label="Table View" />
               </nav>
             </div>
-            <div className="text-sm text-gray-600">Welcome to CRM</div>
+            <div className="text-sm text-gray-600">Welcome to NextGen Coding CRM</div>
           </div>
         </div>
       </header>
